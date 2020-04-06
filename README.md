@@ -1,9 +1,14 @@
 # Simple quarkus application
 
-### Run
+## Goal
+
+Simple quarkus application that expose an api to create and retrieve orders and products from an imaginary online shop.
+
+## Run
 In a windows cmd, in the root folder of the project:
 > `mvnw compile quarkus:dev`
 
+## Features
 
 ### get list of objects
 In a browser:
@@ -46,3 +51,7 @@ Orders:
 or
 
 > `curl -w "\n" http://localhost:8080/orders/createone`
+
+### scheduled tasks
+
+A Scheduler logs the total number of orders present in db every 40s.

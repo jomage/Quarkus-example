@@ -37,5 +37,10 @@ public abstract class AbstractEntityService <T> {
 	public List<T> listAll() {
 		return getSession().createQuery("from " + entityClass.getSimpleName(), entityClass).getResultList();
 	}
+	
+	@Transactional
+	public Long count() {
+		return em.createQuery("select count(*) from " + entityClass.getSimpleName(), Long.class).getSingleResult();
+	}
 
 }
