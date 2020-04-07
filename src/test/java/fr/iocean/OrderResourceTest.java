@@ -2,32 +2,32 @@ package fr.iocean;
 
 import static io.restassured.RestAssured.given;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import javax.ws.rs.core.MediaType;
-
 import org.junit.jupiter.api.Test;
-
-import fr.iocean.beans.Product;
+import fr.iocean.beans.Order;
 import io.quarkus.test.junit.QuarkusTest;
 
 @QuarkusTest
-public class ProductResourceTest {
+public class OrderResourceTest {
 
 	@Test
-	public void testListProducts() {
+	public void testListOrders() {
 		given()
-			.when().get("/products")
+			.when().get("/orders")
 			.then()
 				.statusCode(200);
 	}
 	
 	@Test
 	public void testCreateProduct() {
-		Product p = new Product();
-		p.setName("test product");
-		p.setUnitPrice(20d);
+		Order o = new Order();
+		o.setShippingAddress("test order");
+		o.setDateOrdered(Date.valueOf(LocalDate.now()));
 		given()
-			.body(p).contentType(MediaType.APPLICATION_JSON)
-			.when().post("/products")
+			.body(o).contentType(MediaType.APPLICATION_JSON)
+			.when().post("/orders")
 	        .then()
 	        	.statusCode(200);
 //	        	.body(is());
